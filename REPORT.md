@@ -1,11 +1,11 @@
-# ContaInbox — reporte de avance
+# FileFollowup — reporte de avance
 
 Fecha: 2026-06-25
 
 ## Hecho
 
 - Creado workspace desde template en `/home/sebas/Documents/conta-inbox`.
-- Rebrand completo de landing/header/footer a **ContaInbox**.
+- Rebrand inicial de landing/header/footer a **ContaInbox**; the approved English-market name is now **FileFollowup**.
 - Agregado schema Supabase para:
   - `accounting_clients`
   - `document_requests`
@@ -85,7 +85,7 @@ Build OK.
 
 ## Próximo paso recomendado
 
-Usar `/demo` + `sales/DEMO_SCRIPT.md` para mostrar ContaInbox a 5 contadores. No construir features grandes hasta validar interés real.
+Usar `/demo` + `sales/DEMO_SCRIPT.md` para mostrar FileFollowup a 5 contadores. No construir features grandes hasta validar interés real.
 
 ## Avance 2026-07-05 — Supabase conectado
 

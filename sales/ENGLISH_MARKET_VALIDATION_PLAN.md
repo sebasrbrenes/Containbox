@@ -2,13 +2,13 @@
 
 ## Decision
 
-Use **FileFollowup** as the working English name for the product currently called ContaInbox/Containbox.
+Use **FileFollowup** as the product name.
 
 **Tagline:** Stop chasing client documents.
 
 **One-sentence positioning:** FileFollowup helps small bookkeeping and accounting firms request, collect, and track client documents through a simple checklist and a secure upload link that requires no client account.
 
-The name is provisional. Do not purchase an expensive domain, commission a large branding project, or complete a code-wide rename until customers have paid. Before public launch, perform proper domain, company-name, social-handle, and trademark checks in the intended jurisdictions.
+The selected domain is **filefollowup.com**. It was not registered when checked on July 14, 2026, but domain availability can change until registration is complete. Register it before public launch, then perform proper company-name, social-handle, and trademark checks in the intended jurisdictions.
 
 ## Why this name
 

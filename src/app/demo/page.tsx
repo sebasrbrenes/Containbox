@@ -75,14 +75,14 @@ export default function DemoPage() {
     ]);
   }
 
-  const publicLink = `containbox.demo/upload/${clientName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client"}-${period}`;
+  const publicLink = `filefollowup.test/upload/${clientName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client"}-${period}`;
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <section className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <p className="text-sm font-semibold text-emerald-600">Demo without Supabase</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">ContaInbox interactive demo</h1>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">FileFollowup interactive demo</h1>
           <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-300">
             Explore the complete workflow: create a client, build a monthly checklist, share a public link, update statuses, and use the key actions. This demo does not save real data.
           </p>

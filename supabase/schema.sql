@@ -58,7 +58,7 @@ create trigger on_auth_user_created
 after insert on auth.users
 for each row execute procedure public.handle_new_user();
 
--- ContaInbox product schema
+-- FileFollowup product schema
 create type public.request_status as enum ('draft', 'open', 'completed', 'archived');
 create type public.item_status as enum ('pending', 'received', 'reviewed');
 

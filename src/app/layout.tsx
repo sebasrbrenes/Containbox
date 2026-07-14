@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
-  title: "ContaInbox | Stop chasing client documents",
+  title: "FileFollowup | Stop chasing client documents",
   description: "A simple portal for bookkeepers to request, receive, and organize monthly client documents.",
 };
 

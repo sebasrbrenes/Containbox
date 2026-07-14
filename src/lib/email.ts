@@ -15,8 +15,8 @@ export async function sendWelcomeEmail(to: string) {
   const result = await resend.emails.send({
     from: env.resendFromEmail,
     to,
-    subject: "Welcome to ContaInbox",
-    html: "<h1>Welcome</h1><p>Your ContaInbox workspace is ready to collect client documents.</p>",
+    subject: "Welcome to FileFollowup",
+    html: "<h1>Welcome</h1><p>Your FileFollowup workspace is ready to collect client documents.</p>",
   });
 
   if (result.error) {

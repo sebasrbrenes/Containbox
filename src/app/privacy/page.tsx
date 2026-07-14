@@ -8,7 +8,7 @@ export default function PrivacyPage() {
       <Card className="mt-8 space-y-6 text-sm leading-7 text-slate-700 dark:text-slate-300">
         <section>
           <CardTitle>Information we process</CardTitle>
-          <p className="mt-2">ContaInbox processes account details, bookkeeping-firm client contact details, document-request checklists, uploaded files, uploader names, and basic operational events needed to provide the service.</p>
+          <p className="mt-2">FileFollowup processes account details, bookkeeping-firm client contact details, document-request checklists, uploaded files, uploader names, and basic operational events needed to provide the service.</p>
         </section>
         <section>
           <CardTitle>How information is used</CardTitle>
@@ -20,11 +20,11 @@ export default function PrivacyPage() {
         </section>
         <section>
           <CardTitle>Retention and deletion</CardTitle>
-          <p className="mt-2">Pilot data is retained only while needed to provide the pilot, resolve operational issues, and meet applicable obligations. Firm users may request an export or deletion through their established ContaInbox support channel. Deletion requests will include database records and associated stored files, subject to any required legal retention.</p>
+          <p className="mt-2">Pilot data is retained only while needed to provide the pilot, resolve operational issues, and meet applicable obligations. Firm users may request an export or deletion through their established FileFollowup support channel. Deletion requests will include database records and associated stored files, subject to any required legal retention.</p>
         </section>
         <section>
           <CardTitle>Security and pilot limitations</CardTitle>
-          <p className="mt-2">We use authenticated firm access, private file storage, and tokenized client upload links. No system can guarantee absolute security. ContaInbox does not currently claim SOC 2, HIPAA, or another independent security certification.</p>
+          <p className="mt-2">We use authenticated firm access, private file storage, and tokenized client upload links. No system can guarantee absolute security. FileFollowup does not currently claim SOC 2, HIPAA, or another independent security certification.</p>
         </section>
         <section>
           <CardTitle>Your choices</CardTitle>

@@ -38,7 +38,7 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
   }
 
   const content = await zip.generateAsync({ type: "uint8array" });
-  const fileName = `conta-inbox-${String(requestRow.period)}.zip`;
+  const fileName = `file-followup-${String(requestRow.period)}.zip`;
 
   const body = new ArrayBuffer(content.byteLength);
   new Uint8Array(body).set(content);

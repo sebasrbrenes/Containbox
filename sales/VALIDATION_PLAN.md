@@ -1,10 +1,10 @@
-# ContaInbox — plan de validación de 7 días
+# FileFollowup — plan de validación de 7 días
 
 ## Objetivo
 Conseguir 2 pilotos reales o confirmar rápido que el problema/precio no es suficientemente fuerte.
 
 ## Hipótesis
-Contadores independientes y estudios pequeños pagan US$19–49/mes si ContaInbox les reduce el caos mensual de pedir documentos por WhatsApp/correo.
+Contadores independientes y estudios pequeños pagan US$19–49/mes si FileFollowup les reduce el caos mensual de pedir documentos por WhatsApp/correo.
 
 ## Perfil de prospecto
 Prioridad alta:
@@ -34,7 +34,7 @@ Prioridad baja:
 3. ¿Qué documentos son los que más faltan?
 4. ¿Dónde se pierden más archivos: WhatsApp, correo, Drive?
 5. ¿Cuánto tiempo pierdes persiguiendo clientes?
-6. ¿Qué tendría que hacer ContaInbox para que lo uses de verdad?
+6. ¿Qué tendría que hacer FileFollowup para que lo uses de verdad?
 7. ¿Pagarías US$19, US$49 o US$99 al mes por esto si funciona?
 
 ## Criterios para seguir construyendo

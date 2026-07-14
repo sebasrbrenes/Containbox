@@ -28,7 +28,7 @@ export default async function DashboardPage() {
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
         <div>
-          <p className="text-sm font-medium text-emerald-600">ContaInbox</p>
+          <p className="text-sm font-medium text-emerald-600">FileFollowup</p>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
           <p className="mt-2 text-slate-600 dark:text-slate-300">Organize monthly documents by client and period.</p>
         </div>

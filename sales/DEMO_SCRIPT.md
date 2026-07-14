@@ -1,10 +1,10 @@
-# ContaInbox — demo script de 3 minutos
+# FileFollowup — demo script de 3 minutos
 
 ## Objetivo
 Conseguir que un contador diga: “sí, esto me ahorraría tiempo cada mes” y acepte probarlo con 3–5 clientes reales.
 
 ## Apertura — 20 segundos
-“ContaInbox es un portal simple para que los contadores pidan documentos mensuales a sus clientes sin perseguirlos por WhatsApp. Creas un checklist, mandas un link, el cliente sube archivos sin cuenta y tú ves qué falta, qué llegó y qué ya revisaste.”
+“FileFollowup es un portal simple para que los contadores pidan documentos mensuales a sus clientes sin perseguirlos por WhatsApp. Creas un checklist, mandas un link, el cliente sube archivos sin cuenta y tú ves qué falta, qué llegó y qué ya revisaste.”
 
 ## Flujo de demo — 2 minutos
 

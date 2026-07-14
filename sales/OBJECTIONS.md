@@ -1,13 +1,13 @@
-# ContaInbox — objeciones y respuestas
+# FileFollowup — objeciones y respuestas
 
 ## “Ya uso WhatsApp.”
-Sí, y no intento reemplazarlo por completo. ContaInbox puede complementar WhatsApp: mandas el link por WhatsApp, pero los archivos y estados quedan ordenados por cliente y periodo.
+Sí, y no intento reemplazarlo por completo. FileFollowup puede complementar WhatsApp: mandas el link por WhatsApp, pero los archivos y estados quedan ordenados por cliente y periodo.
 
 ## “Mis clientes no van a crear cuenta.”
 No necesitan cuenta. El punto del producto es que el cliente solo abre un link y sube archivos.
 
 ## “Uso Google Drive.”
-Drive sirve para guardar archivos, pero no siempre te dice claramente qué falta, qué llegó, qué está revisado y a quién recordar. ContaInbox está pensado para ese seguimiento mensual.
+Drive sirve para guardar archivos, pero no siempre te dice claramente qué falta, qué llegó, qué está revisado y a quién recordar. FileFollowup está pensado para ese seguimiento mensual.
 
 ## “No quiero pagar otro software.”
 Tiene sentido. Por eso el piloto debe demostrar ahorro de tiempo. Si no te ahorra horas o reduce errores, no vale la pena pagar.

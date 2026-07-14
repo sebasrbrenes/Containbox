@@ -14,7 +14,7 @@ export function SiteHeader() {
     <header className="sticky top-0 z-30 border-b border-slate-200/70 bg-white/85 backdrop-blur dark:border-slate-800 dark:bg-slate-950/85">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <Link href="/" className="text-base font-bold tracking-tight">
-          ContaInbox
+          FileFollowup
         </Link>
         <nav className="hidden items-center gap-6 text-sm text-slate-600 dark:text-slate-300 md:flex">
           {nav.map((item) => (

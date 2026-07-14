@@ -22,7 +22,7 @@ export const env = {
   onvoWebhookSecret: process.env.ONVO_WEBHOOK_SECRET,
   onvoPriceId: process.env.ONVO_PRICE_ID,
   resendApiKey: process.env.RESEND_API_KEY,
-  resendFromEmail: process.env.RESEND_FROM_EMAIL ?? "Micro SaaS <hello@example.com>",
+  resendFromEmail: process.env.RESEND_FROM_EMAIL ?? "FileFollowup <hello@example.com>",
   posthogKey: process.env.NEXT_PUBLIC_POSTHOG_KEY,
   posthogHost: process.env.NEXT_PUBLIC_POSTHOG_HOST ?? "https://us.i.posthog.com",
   plausibleDomain: process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN,

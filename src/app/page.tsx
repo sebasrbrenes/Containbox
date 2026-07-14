@@ -42,7 +42,7 @@ export default function Home() {
             Collect client documents without the monthly chase.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            ContaInbox gives you monthly checklists, no-login upload links, and reminders so clients can send statements, receipts, and reports on time.
+            FileFollowup gives you monthly checklists, no-login upload links, and reminders so clients can send statements, receipts, and reports on time.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/demo">
@@ -112,7 +112,7 @@ export default function Home() {
               <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Founding pilot</p>
               <h2 className="mt-3 text-3xl font-bold tracking-tight">The goal is not more features. It is two successful pilots.</h2>
               <p className="mt-4 text-slate-700 dark:text-slate-300">
-                ContaInbox is ready to demonstrate. We are looking for bookkeepers who want to test it with real clients and measure whether it reduces monthly follow-up.
+                FileFollowup is ready to demonstrate. We are looking for bookkeepers who want to test it with real clients and measure whether it reduces monthly follow-up.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                 <ButtonLink href="/demo">Open interactive demo</ButtonLink>

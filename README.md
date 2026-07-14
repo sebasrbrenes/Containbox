@@ -1,6 +1,8 @@
-# Micro SaaS Template
+# FileFollowup
 
-Template web para lanzar micro SaaS con:
+FileFollowup helps small bookkeeping firms request, collect, and track client documents without repeated email and text follow-ups.
+
+Built with:
 
 - Next.js App Router + TypeScript
 - Tailwind CSS + componentes estilo shadcn/ui
