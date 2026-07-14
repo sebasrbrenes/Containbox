@@ -3,31 +3,31 @@ import { ButtonLink } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 const steps = [
-  { title: "Crea el cliente", description: "Registra nombre, email y periodo contable en menos de un minuto." },
-  { title: "Envía un link", description: "El cliente sube documentos sin crear cuenta ni instalar nada." },
-  { title: "Revisa qué falta", description: "Mira cada checklist como pendiente, recibido o revisado." },
-  { title: "Descarga todo", description: "Baja los documentos del mes en un ZIP ordenado." },
+  { title: "Create the client", description: "Add their name, email, and accounting period in under a minute." },
+  { title: "Send one link", description: "The client uploads documents without creating an account or installing anything." },
+  { title: "See what is missing", description: "Track each checklist item as pending, received, or reviewed." },
+  { title: "Download everything", description: "Download the month's documents in one organized ZIP file." },
 ];
 
 const benefits = [
-  { icon: MessageSquareWarning, title: "Menos persecución", description: "Deja de pedir facturas por WhatsApp todos los meses." },
-  { icon: FileUp, title: "Carga simple", description: "Tus clientes reciben un link y suben archivos desde el celular." },
-  { icon: Bell, title: "Recordatorios", description: "Envía emails de seguimiento a quienes aún deben documentos." },
-  { icon: CheckCircle2, title: "Estado claro", description: "Pendiente, recibido y revisado para cada documento solicitado." },
-  { icon: Download, title: "ZIP mensual", description: "Descarga todo por cliente y periodo para trabajar más rápido." },
-  { icon: ShieldCheck, title: "Base segura", description: "Auth, base de datos y storage privado con Supabase." },
+  { icon: MessageSquareWarning, title: "Less chasing", description: "Stop requesting the same documents by email or text every month." },
+  { icon: FileUp, title: "Simple uploads", description: "Clients receive one link and upload files from any device." },
+  { icon: Bell, title: "Reminders", description: "Follow up with clients who still owe documents." },
+  { icon: CheckCircle2, title: "Clear status", description: "See pending, received, and reviewed for every requested document." },
+  { icon: Download, title: "Monthly ZIP", description: "Download everything by client and period so you can work faster." },
+  { icon: ShieldCheck, title: "Secure foundation", description: "Authentication, database, and private storage powered by Supabase." },
 ];
 
 const prices = [
-  { name: "Starter", price: "US$19/mes", detail: "Hasta 20 clientes" },
-  { name: "Studio", price: "US$49/mes", detail: "Hasta 100 clientes" },
-  { name: "Firm", price: "US$99/mes", detail: "Hasta 300 clientes" },
+  { name: "Starter", price: "$19/month", detail: "Up to 20 clients" },
+  { name: "Studio", price: "$49/month", detail: "Up to 100 clients" },
+  { name: "Firm", price: "$99/month", detail: "Up to 300 clients" },
 ];
 
 const salesActions = [
-  { icon: TimerReset, title: "Demo en 3 minutos", description: "Muestra cliente, checklist, link público, pendientes y ZIP sin configurar Supabase." },
-  { icon: Users, title: "Primeros 50 prospectos", description: "Contadores independientes y estudios pequeños que aún piden facturas por WhatsApp." },
-  { icon: Send, title: "Oferta simple", description: "Prueba guiada + setup inicial. Objetivo: 2 usuarios piloto antes de construir más." },
+  { icon: TimerReset, title: "Three-minute demo", description: "See the client, checklist, public link, pending items, and ZIP without configuring Supabase." },
+  { icon: Users, title: "First 50 prospects", description: "Independent bookkeepers and small firms that still request documents by email or text." },
+  { icon: Send, title: "Simple offer", description: "Guided trial plus initial setup. Goal: two pilot users before building more." },
 ];
 
 export default function Home() {
@@ -36,26 +36,26 @@ export default function Home() {
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:py-28">
         <div className="flex flex-col justify-center">
           <p className="mb-4 inline-flex w-fit rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1 text-sm font-medium text-emerald-700 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-300">
-            Para contadores y estudios contables pequeños
+            For independent bookkeepers and small accounting firms
           </p>
           <h1 className="max-w-4xl text-4xl font-bold tracking-tight sm:text-6xl">
-            Recibe documentos contables sin perseguir clientes por WhatsApp.
+            Collect client documents without the monthly chase.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-slate-300">
-            ContaInbox crea checklists mensuales, links de carga y recordatorios para que tus clientes suban facturas, recibos y estados de cuenta a tiempo.
+            ContaInbox gives you monthly checklists, no-login upload links, and reminders so clients can send statements, receipts, and reports on time.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
             <ButtonLink href="/demo">
-              Ver demo sin Supabase <ArrowRight className="ml-2 h-4 w-4" />
+              View interactive demo <ArrowRight className="ml-2 h-4 w-4" />
             </ButtonLink>
-            <ButtonLink href="/dashboard" variant="secondary">Crear portal real</ButtonLink>
-            <ButtonLink href="#como-funciona" variant="secondary">Ver cómo funciona</ButtonLink>
+            <ButtonLink href="/dashboard" variant="secondary">Create your workspace</ButtonLink>
+            <ButtonLink href="#how-it-works" variant="secondary">See how it works</ButtonLink>
           </div>
         </div>
         <Card className="bg-slate-950 text-white dark:bg-white dark:text-slate-950">
           <CardHeader>
-            <CardDescription className="text-slate-300 dark:text-slate-600">Flujo mensual</CardDescription>
-            <CardTitle className="text-2xl">Del caos al checklist</CardTitle>
+            <CardDescription className="text-slate-300 dark:text-slate-600">Monthly workflow</CardDescription>
+            <CardTitle className="text-2xl">From scattered files to one checklist</CardTitle>
           </CardHeader>
           <div className="grid gap-3 text-sm">
             {steps.map((step, index) => (
@@ -71,16 +71,16 @@ export default function Home() {
         </Card>
       </section>
 
-      <section id="como-funciona" className="border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/30">
+      <section id="how-it-works" className="border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
-            <h2 className="text-3xl font-bold tracking-tight">Cómo funciona</h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-300">Un flujo simple para cerrar cada mes con menos mensajes repetidos.</p>
+            <h2 className="text-3xl font-bold tracking-tight">How it works</h2>
+            <p className="mt-3 text-slate-600 dark:text-slate-300">A simple workflow for closing each month with fewer follow-up messages.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-4">
             {steps.map((step, index) => (
               <Card key={step.title}>
-                <p className="mb-4 text-sm font-bold text-emerald-600">Paso {index + 1}</p>
+                <p className="mb-4 text-sm font-bold text-emerald-600">Step {index + 1}</p>
                 <CardTitle>{step.title}</CardTitle>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{step.description}</p>
               </Card>
@@ -89,10 +89,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="beneficios" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="benefits" className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-10 max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight">Hecho para vender rápido y ahorrar tiempo real</h2>
-          <p className="mt-3 text-slate-600 dark:text-slate-300">MVP enfocado en el problema mensual: pedir, recibir y ordenar documentos.</p>
+          <h2 className="text-3xl font-bold tracking-tight">Built to save time on the monthly close</h2>
+          <p className="mt-3 text-slate-600 dark:text-slate-300">A focused workflow for requesting, receiving, and organizing client documents.</p>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {benefits.map((benefit) => (
@@ -105,18 +105,18 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="validacion" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
+      <section id="validation" className="mx-auto max-w-7xl px-4 pb-16 sm:px-6 lg:px-8">
         <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-6 dark:border-emerald-900 dark:bg-emerald-950/30 sm:p-8">
           <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Plan de validación</p>
-              <h2 className="mt-3 text-3xl font-bold tracking-tight">La meta no es agregar más funciones: es conseguir 2 pilotos.</h2>
+              <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700 dark:text-emerald-300">Founding pilot</p>
+              <h2 className="mt-3 text-3xl font-bold tracking-tight">The goal is not more features. It is two successful pilots.</h2>
               <p className="mt-4 text-slate-700 dark:text-slate-300">
-                ContaInbox ya se puede enseñar. El siguiente paso realista es mostrar la demo a contadores y confirmar si pagarían por ahorrar el caos mensual de documentos.
+                ContaInbox is ready to demonstrate. We are looking for bookkeepers who want to test it with real clients and measure whether it reduces monthly follow-up.
               </p>
               <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                <ButtonLink href="/demo">Abrir demo vendible</ButtonLink>
-                <ButtonLink href="#precios" variant="secondary">Ver precios sugeridos</ButtonLink>
+                <ButtonLink href="/demo">Open interactive demo</ButtonLink>
+                <ButtonLink href="#pricing" variant="secondary">View suggested pricing</ButtonLink>
               </div>
             </div>
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
@@ -132,11 +132,11 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="precios" className="border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/30">
+      <section id="pricing" className="border-y border-slate-200 bg-slate-50 py-16 dark:border-slate-800 dark:bg-slate-900/30">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 max-w-2xl">
-            <h2 className="text-3xl font-bold tracking-tight">Precios simples</h2>
-            <p className="mt-3 text-slate-600 dark:text-slate-300">Empieza con clientes reales y agrega OCR de facturas después.</p>
+            <h2 className="text-3xl font-bold tracking-tight">Simple pricing</h2>
+            <p className="mt-3 text-slate-600 dark:text-slate-300">Start with real clients. Add advanced automation only when it is needed.</p>
           </div>
           <div className="grid gap-4 md:grid-cols-3">
             {prices.map((plan) => (
@@ -150,7 +150,7 @@ export default function Home() {
             ))}
           </div>
           <div className="mt-8">
-            <ButtonLink href="/dashboard">Crear cuenta y probar</ButtonLink>
+            <ButtonLink href="/dashboard">Create an account</ButtonLink>
           </div>
         </div>
       </section>

@@ -2,10 +2,10 @@ import Link from "next/link";
 import { ButtonLink } from "@/components/ui/button";
 
 const nav = [
-  { href: "#como-funciona", label: "Cómo funciona" },
-  { href: "#beneficios", label: "Beneficios" },
-  { href: "#validacion", label: "Validación" },
-  { href: "#precios", label: "Precios" },
+  { href: "#how-it-works", label: "How it works" },
+  { href: "#benefits", label: "Benefits" },
+  { href: "#validation", label: "Validation" },
+  { href: "#pricing", label: "Pricing" },
   { href: "/demo", label: "Demo" },
 ];
 
@@ -27,7 +27,7 @@ export function SiteHeader() {
           <ButtonLink href="/login" variant="ghost" className="hidden sm:inline-flex">
             Login
           </ButtonLink>
-          <ButtonLink href="/demo">Ver demo</ButtonLink>
+          <ButtonLink href="/demo">View demo</ButtonLink>
         </div>
       </div>
     </header>

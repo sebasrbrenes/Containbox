@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { ButtonLink } from "@/components/ui/button";
+import { Button, ButtonLink } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { createClient, isSupabaseConfigured } from "@/lib/supabase/server";
+import { signOut } from "@/app/auth/actions";
 
 export default async function DashboardPage() {
   if (!isSupabaseConfigured()) return <SetupState />;
@@ -18,9 +19,9 @@ export default async function DashboardPage() {
   ]);
 
   const metrics = [
-    { label: "Clientes", value: String(clientCount ?? 0), hint: "Clientes contables activos" },
-    { label: "Solicitudes abiertas", value: String(openRequestCount ?? 0), hint: "Periodos pendientes" },
-    { label: "Documentos recibidos", value: String(uploadCount ?? 0), hint: "Archivos cargados" },
+    { label: "Clients", value: String(clientCount ?? 0), hint: "Active bookkeeping clients" },
+    { label: "Open requests", value: String(openRequestCount ?? 0), hint: "Pending periods" },
+    { label: "Documents received", value: String(uploadCount ?? 0), hint: "Uploaded files" },
   ];
 
   return (
@@ -29,11 +30,14 @@ export default async function DashboardPage() {
         <div>
           <p className="text-sm font-medium text-emerald-600">ContaInbox</p>
           <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p className="mt-2 text-slate-600 dark:text-slate-300">Organiza documentos mensuales por cliente y periodo.</p>
+          <p className="mt-2 text-slate-600 dark:text-slate-300">Organize monthly documents by client and period.</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
-          <ButtonLink href="/dashboard/clients" variant="secondary">Nuevo cliente</ButtonLink>
-          <ButtonLink href="/dashboard/requests/new">Nueva solicitud</ButtonLink>
+          <ButtonLink href="/dashboard/clients" variant="secondary">New client</ButtonLink>
+          <ButtonLink href="/dashboard/requests/new">New request</ButtonLink>
+          <form action={signOut}>
+            <Button type="submit" variant="ghost">Sign out</Button>
+          </form>
         </div>
       </div>
       <section className="grid gap-4 md:grid-cols-3">
@@ -49,14 +53,14 @@ export default async function DashboardPage() {
       </section>
       <section className="mt-8 grid gap-4 md:grid-cols-2">
         <Card>
-          <CardTitle>Clientes</CardTitle>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Crea clientes y guarda datos de contacto.</p>
-          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/clients">Abrir clientes →</Link>
+          <CardTitle>Clients</CardTitle>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Create clients and save their contact details.</p>
+          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/clients">Open clients →</Link>
         </Card>
         <Card>
-          <CardTitle>Solicitudes mensuales</CardTitle>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Crea checklists y comparte links de carga.</p>
-          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/requests/new">Crear solicitud →</Link>
+          <CardTitle>Monthly requests</CardTitle>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Create checklists and share upload links.</p>
+          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/requests/new">Create request →</Link>
         </Card>
       </section>
     </main>
@@ -68,15 +72,15 @@ function SetupState() {
     <main className="mx-auto flex min-h-[calc(100vh-4rem)] max-w-3xl items-center px-4 py-16">
       <Card>
         <CardHeader>
-          <CardTitle>Dashboard listo para Supabase</CardTitle>
-          <CardDescription>Agrega tus credenciales en `.env.local` para activar auth real.</CardDescription>
+          <CardTitle>Dashboard ready for Supabase</CardTitle>
+          <CardDescription>Add your credentials to `.env.local` to enable authentication.</CardDescription>
         </CardHeader>
         <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm text-slate-100">
 {`NEXT_PUBLIC_SUPABASE_URL=...
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...`}
         </pre>
-        <ButtonLink href="/login" className="mt-5">Ir al login</ButtonLink>
+        <ButtonLink href="/login" className="mt-5">Go to login</ButtonLink>
       </Card>
     </main>
   );

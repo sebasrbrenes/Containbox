@@ -10,9 +10,16 @@ import { markItemReviewed, markRequestCompleted } from "../actions";
 
 export const dynamic = "force-dynamic";
 
-export default async function RequestDetailPage({ params }: { params: Promise<{ id: string }> }) {
-  if (!isSupabaseConfigured()) return <main className="mx-auto max-w-3xl px-4 py-16"><Card><CardTitle>Configura Supabase</CardTitle><p className="mt-2 text-sm text-slate-600">Activa Supabase para ver solicitudes.</p></Card></main>;
+export default async function RequestDetailPage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ id: string }>;
+  searchParams: Promise<{ reminder?: string }>;
+}) {
+  if (!isSupabaseConfigured()) return <main className="mx-auto max-w-3xl px-4 py-16"><Card><CardTitle>Configure Supabase</CardTitle><p className="mt-2 text-sm text-slate-600">Enable Supabase to view requests.</p></Card></main>;
   const { id } = await params;
+  const { reminder } = await searchParams;
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
   if (!data.user) redirect("/login");
@@ -39,26 +46,31 @@ export default async function RequestDetailPage({ params }: { params: Promise<{ 
     <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <Link href={typedClient ? `/dashboard/clients/${typedClient.id}` : "/dashboard"} className="text-sm font-semibold text-emerald-600">← Volver</Link>
+          <Link href={typedClient ? `/dashboard/clients/${typedClient.id}` : "/dashboard"} className="text-sm font-semibold text-emerald-600">← Back</Link>
           <h1 className="mt-2 text-3xl font-bold">{typedRequest.title}</h1>
-          <p className="text-slate-600 dark:text-slate-300">{typedClient?.name ?? "Cliente"} · {typedRequest.period} · {requestStatusLabel(typedRequest.status)}</p>
+          <p className="text-slate-600 dark:text-slate-300">{typedClient?.name ?? "Client"} · {typedRequest.period} · {requestStatusLabel(typedRequest.status)}</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
-          <ButtonLink href={`/api/requests/${typedRequest.id}/download`} variant="secondary">Descargar ZIP</ButtonLink>
+          <ButtonLink href={`/api/requests/${typedRequest.id}/download`} variant="secondary">Download ZIP</ButtonLink>
           <form action={markRequestCompleted.bind(null, typedRequest.id)}>
-            <Button type="submit" variant="secondary">Marcar completada</Button>
+            <Button type="submit" variant="secondary">Mark as completed</Button>
           </form>
         </div>
       </div>
 
       <Card className="mb-6">
         <CardHeader>
-          <CardTitle>Link público para el cliente</CardTitle>
-          <CardDescription>Compártelo por WhatsApp o email. El cliente no necesita cuenta.</CardDescription>
+          <CardTitle>Public client link</CardTitle>
+          <CardDescription>Share it by email or text. The client does not need an account.</CardDescription>
         </CardHeader>
         <div className="rounded-xl bg-slate-100 p-3 text-sm break-all dark:bg-slate-900">{uploadUrl}</div>
+        {reminder === "sent" ? (
+          <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-200">
+            Reminder sent successfully.
+          </p>
+        ) : null}
         <form action={`/api/requests/${typedRequest.id}/reminder`} method="post" className="mt-4">
-          <Button type="submit" variant="secondary">Enviar recordatorio por email</Button>
+          <Button type="submit" variant="secondary">Send email reminder</Button>
         </form>
       </Card>
 
@@ -66,7 +78,7 @@ export default async function RequestDetailPage({ params }: { params: Promise<{ 
         <Card>
           <CardHeader>
             <CardTitle>Checklist</CardTitle>
-            <CardDescription>Controla lo pendiente, recibido y revisado.</CardDescription>
+            <CardDescription>Track what is pending, received, and reviewed.</CardDescription>
           </CardHeader>
           <div className="grid gap-3">
             {(items as DocumentRequestItem[] | null)?.map((item) => (
@@ -76,7 +88,7 @@ export default async function RequestDetailPage({ params }: { params: Promise<{ 
                   <p className="text-sm text-slate-500">{itemStatusLabel(item.status)}</p>
                 </div>
                 <form action={markItemReviewed.bind(null, item.id, typedRequest.id)}>
-                  <Button type="submit" variant="secondary">Revisado</Button>
+                  <Button type="submit" variant="secondary">Mark reviewed</Button>
                 </form>
               </div>
             ))}
@@ -85,18 +97,18 @@ export default async function RequestDetailPage({ params }: { params: Promise<{ 
 
         <Card>
           <CardHeader>
-            <CardTitle>Documentos recibidos</CardTitle>
-            <CardDescription>{uploads?.length ?? 0} archivos cargados.</CardDescription>
+            <CardTitle>Documents received</CardTitle>
+            <CardDescription>{uploads?.length ?? 0} files uploaded.</CardDescription>
           </CardHeader>
           <div className="grid gap-3">
             {(uploads as UploadedDocument[] | null)?.map((doc) => (
               <div key={doc.id} className="rounded-xl border border-slate-200 p-3 text-sm dark:border-slate-800">
                 <p className="font-semibold">{doc.original_name}</p>
-                <p className="text-slate-500">{doc.mime_type ?? "archivo"} · {doc.size_bytes ?? 0} bytes</p>
-                <a className="mt-2 inline-block font-semibold text-emerald-600" href={`/api/documents/${doc.id}/download`}>Descargar</a>
+                <p className="text-slate-500">{doc.mime_type ?? "file"} · {doc.size_bytes ?? 0} bytes</p>
+                <a className="mt-2 inline-block font-semibold text-emerald-600" href={`/api/documents/${doc.id}/download`}>Download</a>
               </div>
             ))}
-            {!uploads?.length && <p className="text-sm text-slate-500">Todavía no hay archivos. Comparte el link público.</p>}
+            {!uploads?.length && <p className="text-sm text-slate-500">No files yet. Share the public link with your client.</p>}
           </div>
         </Card>
       </section>

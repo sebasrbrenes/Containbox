@@ -8,49 +8,49 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
 const initialItems = [
-  { id: "ventas", label: "Facturas de venta", status: "recibido" },
-  { id: "compras", label: "Facturas de compra", status: "pendiente" },
-  { id: "banco", label: "Estados de cuenta bancarios", status: "revisado" },
-  { id: "gastos", label: "Recibos de gastos", status: "pendiente" },
-  { id: "nomina", label: "Nómina / comprobantes de pago", status: "pendiente" },
+  { id: "sales", label: "Sales invoices", status: "received" },
+  { id: "purchases", label: "Purchase invoices", status: "pending" },
+  { id: "bank", label: "Bank statements", status: "reviewed" },
+  { id: "expenses", label: "Expense receipts", status: "pending" },
+  { id: "payroll", label: "Payroll reports / proof of payment", status: "pending" },
 ];
 
 const statusStyles: Record<string, string> = {
-  pendiente: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:ring-amber-900",
-  recibido: "bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:ring-blue-900",
-  revisado: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-200 dark:ring-emerald-900",
+  pending: "bg-amber-50 text-amber-700 ring-amber-200 dark:bg-amber-950 dark:text-amber-200 dark:ring-amber-900",
+  received: "bg-blue-50 text-blue-700 ring-blue-200 dark:bg-blue-950 dark:text-blue-200 dark:ring-blue-900",
+  reviewed: "bg-emerald-50 text-emerald-700 ring-emerald-200 dark:bg-emerald-950 dark:text-emerald-200 dark:ring-emerald-900",
 };
 
 function nextStatus(status: string) {
-  if (status === "pendiente") return "recibido";
-  if (status === "recibido") return "revisado";
-  return "pendiente";
+  if (status === "pending") return "received";
+  if (status === "received") return "reviewed";
+  return "pending";
 }
 
 export default function DemoPage() {
-  const [clientName, setClientName] = useState("Panadería La Central");
-  const [contactEmail, setContactEmail] = useState("admin@lacentral.test");
+  const [clientName, setClientName] = useState("Oak & Main Bakery");
+  const [contactEmail, setContactEmail] = useState("admin@oakandmain.test");
   const [period, setPeriod] = useState("2026-07");
   const [items, setItems] = useState(initialItems);
   const [newItem, setNewItem] = useState("");
   const [activity, setActivity] = useState([
-    "Link público generado para Panadería La Central",
-    "Estados de cuenta bancarios marcado como revisado",
-    "Facturas de venta recibidas desde el portal del cliente",
+    "Public link generated for Oak & Main Bakery",
+    "Bank statements marked as reviewed",
+    "Sales invoices received through the client portal",
   ]);
 
   const counts = useMemo(() => ({
     total: items.length,
-    pending: items.filter((item) => item.status === "pendiente").length,
-    received: items.filter((item) => item.status === "recibido").length,
-    reviewed: items.filter((item) => item.status === "revisado").length,
+    pending: items.filter((item) => item.status === "pending").length,
+    received: items.filter((item) => item.status === "received").length,
+    reviewed: items.filter((item) => item.status === "reviewed").length,
   }), [items]);
 
   function addItem() {
     const label = newItem.trim();
     if (!label) return;
-    setItems((current) => [...current, { id: crypto.randomUUID(), label, status: "pendiente" }]);
-    setActivity((current) => [`Documento agregado: ${label}`, ...current].slice(0, 5));
+    setItems((current) => [...current, { id: crypto.randomUUID(), label, status: "pending" }]);
+    setActivity((current) => [`Document added: ${label}`, ...current].slice(0, 5));
     setNewItem("");
   }
 
@@ -64,64 +64,64 @@ export default function DemoPage() {
   }
 
   function resetDemo() {
-    setClientName("Panadería La Central");
-    setContactEmail("admin@lacentral.test");
+    setClientName("Oak & Main Bakery");
+    setContactEmail("admin@oakandmain.test");
     setPeriod("2026-07");
     setItems(initialItems);
     setActivity([
-      "Link público generado para Panadería La Central",
-      "Estados de cuenta bancarios marcado como revisado",
-      "Facturas de venta recibidas desde el portal del cliente",
+      "Public link generated for Oak & Main Bakery",
+      "Bank statements marked as reviewed",
+      "Sales invoices received through the client portal",
     ]);
   }
 
-  const publicLink = `containbox.demo/upload/${clientName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "cliente"}-${period}`;
+  const publicLink = `containbox.demo/upload/${clientName.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "client"}-${period}`;
 
   return (
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <section className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm font-semibold text-emerald-600">Demo sin Supabase</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">ContaInbox en modo demo local</h1>
+          <p className="text-sm font-semibold text-emerald-600">Demo without Supabase</p>
+          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">ContaInbox interactive demo</h1>
           <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-300">
-            Sirve para mostrar el flujo a contadores hoy mismo: crear cliente, checklist mensual, link público, estados y acciones clave. No guarda datos reales.
+            Explore the complete workflow: create a client, build a monthly checklist, share a public link, update statuses, and use the key actions. This demo does not save real data.
           </p>
         </div>
         <Button type="button" variant="secondary" onClick={resetDemo}>
-          <RotateCcw className="mr-2 h-4 w-4" /> Reiniciar demo
+          <RotateCcw className="mr-2 h-4 w-4" /> Reset demo
         </Button>
       </section>
 
       <section className="grid gap-4 md:grid-cols-4">
-        <Metric icon={ClipboardList} label="Documentos" value={counts.total} />
-        <Metric icon={Mail} label="Pendientes" value={counts.pending} />
-        <Metric icon={FileUp} label="Recibidos" value={counts.received} />
-        <Metric icon={CheckCircle2} label="Revisados" value={counts.reviewed} />
+        <Metric icon={ClipboardList} label="Documents" value={counts.total} />
+        <Metric icon={Mail} label="Pending" value={counts.pending} />
+        <Metric icon={FileUp} label="Received" value={counts.received} />
+        <Metric icon={CheckCircle2} label="Reviewed" value={counts.reviewed} />
       </section>
 
       <section className="mt-8 grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
         <Card>
           <CardHeader>
-            <CardTitle>1. Cliente y periodo</CardTitle>
-            <CardDescription>Datos mínimos para preparar una solicitud mensual.</CardDescription>
+            <CardTitle>1. Client and period</CardTitle>
+            <CardDescription>The essential details for preparing a monthly request.</CardDescription>
           </CardHeader>
           <div className="grid gap-4">
-            <Field label="Cliente / empresa" value={clientName} onChange={setClientName} />
-            <Field label="Email de contacto" value={contactEmail} onChange={setContactEmail} type="email" />
-            <Field label="Periodo" value={period} onChange={setPeriod} />
+            <Field label="Client / company" value={clientName} onChange={setClientName} />
+            <Field label="Contact email" value={contactEmail} onChange={setContactEmail} type="email" />
+            <Field label="Period" value={period} onChange={setPeriod} />
           </div>
 
           <div className="mt-6 rounded-2xl bg-slate-50 p-4 dark:bg-slate-900">
-            <p className="text-sm font-semibold">Link público para enviar por WhatsApp/email</p>
+            <p className="text-sm font-semibold">Public link to send by email or text</p>
             <p className="mt-2 break-all rounded-xl bg-white p-3 text-sm text-emerald-700 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">{publicLink}</p>
-            <p className="mt-2 text-xs text-slate-500">En producción este link saldrá de Supabase con token real.</p>
+            <p className="mt-2 text-xs text-slate-500">In production, Supabase generates this link with a secure token.</p>
           </div>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>2. Checklist mensual</CardTitle>
-            <CardDescription>Haz clic en un documento para simular pendiente → recibido → revisado.</CardDescription>
+            <CardTitle>2. Monthly checklist</CardTitle>
+            <CardDescription>Click a document to move it from pending → received → reviewed.</CardDescription>
           </CardHeader>
           <div className="grid gap-3">
             {items.map((item) => (
@@ -137,7 +137,7 @@ export default function DemoPage() {
             ))}
           </div>
           <div className="mt-4 flex gap-2">
-            <Input value={newItem} onChange={(event) => setNewItem(event.target.value)} placeholder="Agregar otro documento" />
+            <Input value={newItem} onChange={(event) => setNewItem(event.target.value)} placeholder="Add another document" />
             <Button type="button" onClick={addItem}>
               <Plus className="h-4 w-4" />
             </Button>
@@ -148,21 +148,21 @@ export default function DemoPage() {
       <section className="mt-6 grid gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle>3. Acciones que se pueden vender en demo</CardTitle>
-            <CardDescription>Simulación de botones reales que ya existen o están preparados.</CardDescription>
+            <CardTitle>3. Key workflow actions</CardTitle>
+            <CardDescription>Preview the actions available in the live workflow.</CardDescription>
           </CardHeader>
           <div className="grid gap-3 sm:grid-cols-2">
-            <Action icon={Mail} title="Enviar recordatorio" detail={`A ${contactEmail || "cliente"}`} />
-            <Action icon={FileArchive} title="Descargar ZIP" detail={`${counts.received + counts.reviewed} archivos listos`} />
-            <Action icon={CheckCircle2} title="Cerrar periodo" detail={counts.pending === 0 ? "Listo" : `${counts.pending} pendientes`} />
-            <Action icon={ArrowRight} title="Convertir a solicitud real" detail="Cuando Supabase esté activo" />
+            <Action icon={Mail} title="Send reminder" detail={`To ${contactEmail || "client"}`} />
+            <Action icon={FileArchive} title="Download ZIP" detail={`${counts.received + counts.reviewed} files ready`} />
+            <Action icon={CheckCircle2} title="Close period" detail={counts.pending === 0 ? "Ready" : `${counts.pending} pending`} />
+            <Action icon={ArrowRight} title="Create a live request" detail="Available when Supabase is connected" />
           </div>
         </Card>
 
         <Card>
           <CardHeader>
-            <CardTitle>Actividad reciente</CardTitle>
-            <CardDescription>Vista tipo dashboard para explicar el valor en 30 segundos.</CardDescription>
+            <CardTitle>Recent activity</CardTitle>
+            <CardDescription>A quick view of the latest client-document activity.</CardDescription>
           </CardHeader>
           <div className="grid gap-3">
             {activity.map((entry) => (

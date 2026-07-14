@@ -23,7 +23,7 @@ export function LoginForm() {
     setMessage(null);
 
     if (!configured) {
-      setMessage("Configura Supabase en .env.local antes de autenticar usuarios.");
+      setMessage("Configure Supabase in .env.local before authenticating users.");
       return;
     }
 
@@ -43,7 +43,7 @@ export function LoginForm() {
     }
 
     if (mode === "signup") {
-      setMessage("Cuenta creada. Revisa tu email si Supabase requiere confirmación.");
+      setMessage("Account created. Check your email if Supabase requires confirmation.");
     } else {
       router.push("/dashboard");
       router.refresh();
@@ -53,8 +53,8 @@ export function LoginForm() {
   return (
     <Card className="mx-auto w-full max-w-md">
       <CardHeader>
-        <CardTitle>{mode === "login" ? "Inicia sesión" : "Crea tu cuenta"}</CardTitle>
-        <CardDescription>Supabase Auth listo para email y password.</CardDescription>
+        <CardTitle>{mode === "login" ? "Sign in" : "Create your account"}</CardTitle>
+        <CardDescription>Use your email and password to access your workspace.</CardDescription>
       </CardHeader>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <div className="space-y-2">
@@ -66,13 +66,13 @@ export function LoginForm() {
           <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} />
         </div>
         {message ? <p className="rounded-xl bg-slate-100 p-3 text-sm text-slate-700 dark:bg-slate-900 dark:text-slate-300">{message}</p> : null}
-        {!configured ? <p className="text-sm text-amber-600">Faltan NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY.</p> : null}
+        {!configured ? <p className="text-sm text-amber-600">NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY are missing.</p> : null}
         <Button className="w-full" disabled={loading} type="submit">
-          {loading ? "Procesando..." : mode === "login" ? "Entrar" : "Registrarme"}
+          {loading ? "Processing..." : mode === "login" ? "Sign in" : "Create account"}
         </Button>
       </form>
       <button className="mt-4 text-sm font-medium text-slate-600 underline dark:text-slate-300" onClick={() => setMode(mode === "login" ? "signup" : "login")} type="button">
-        {mode === "login" ? "¿No tienes cuenta? Regístrate" : "¿Ya tienes cuenta? Inicia sesión"}
+        {mode === "login" ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
       </button>
     </Card>
   );

@@ -38,6 +38,7 @@ create policy "Users can read own profile" on public.profiles for select using (
 create policy "Users can update own profile" on public.profiles for update using (auth.uid() = id);
 create policy "Users can read own subscriptions" on public.subscriptions for select using (auth.uid() = user_id);
 create policy "Users can read own events" on public.events for select using (auth.uid() = user_id);
+create policy "Users can insert own events" on public.events for insert with check (auth.uid() = user_id);
 
 create or replace function public.handle_new_user()
 returns trigger

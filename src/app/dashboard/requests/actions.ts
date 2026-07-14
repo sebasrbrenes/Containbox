@@ -10,20 +10,30 @@ function text(formData: FormData, key: string) {
 }
 
 function defaultTitle(period: string) {
-  return `Documentos ${period}`;
+  return `Documents ${period}`;
 }
 
 export async function createDocumentRequest(formData: FormData) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
-  if (!data.user) throw new Error("No autorizado");
+  if (!data.user) throw new Error("Unauthorized");
 
   const clientId = text(formData, "client_id");
   const period = text(formData, "period");
   const dueDate = text(formData, "due_date");
   const checklistRaw = text(formData, "checklist") ?? "";
 
-  if (!clientId || !period) throw new Error("Cliente y periodo son obligatorios");
+  if (!clientId || !period) throw new Error("Client and period are required");
+  if (!/^\d{4}-(0[1-9]|1[0-2])$/.test(period)) throw new Error("Period must use the YYYY-MM format");
+  if (dueDate && !/^\d{4}-\d{2}-\d{2}$/.test(dueDate)) throw new Error("Due date is invalid");
+  if (checklistRaw.length > 10000) throw new Error("Checklist is too long");
+
+  const checklistLabels = checklistRaw
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  if (checklistLabels.length > 100) throw new Error("A request can contain up to 100 checklist items");
+  if (checklistLabels.some((label) => label.length > 300)) throw new Error("Checklist item labels can contain up to 300 characters");
 
   const { data: client } = await supabase
     .from("accounting_clients")
@@ -31,7 +41,7 @@ export async function createDocumentRequest(formData: FormData) {
     .eq("id", clientId)
     .eq("user_id", data.user.id)
     .single();
-  if (!client) throw new Error("Cliente no encontrado");
+  if (!client) throw new Error("Client not found");
 
   const { data: request, error } = await supabase
     .from("document_requests")
@@ -47,15 +57,14 @@ export async function createDocumentRequest(formData: FormData) {
 
   if (error) throw new Error(error.message);
 
-  const items = checklistRaw
-    .split("\n")
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .map((label, index) => ({ request_id: request.id, label, sort_order: index }));
+  const items = checklistLabels.map((label, index) => ({ request_id: request.id, label, sort_order: index }));
 
   if (items.length > 0) {
     const { error: itemError } = await supabase.from("document_request_items").insert(items);
-    if (itemError) throw new Error(itemError.message);
+    if (itemError) {
+      await supabase.from("document_requests").delete().eq("id", request.id).eq("user_id", data.user.id);
+      throw new Error(itemError.message);
+    }
   }
 
   revalidatePath("/dashboard");
@@ -66,7 +75,7 @@ export async function createDocumentRequest(formData: FormData) {
 export async function markItemReviewed(itemId: string, requestId: string) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
-  if (!data.user) throw new Error("No autorizado");
+  if (!data.user) throw new Error("Unauthorized");
 
   const { data: request } = await supabase
     .from("document_requests")
@@ -74,7 +83,7 @@ export async function markItemReviewed(itemId: string, requestId: string) {
     .eq("id", requestId)
     .eq("user_id", data.user.id)
     .single();
-  if (!request) throw new Error("Solicitud no encontrada");
+  if (!request) throw new Error("Request not found");
 
   const { error } = await supabase
     .from("document_request_items")
@@ -89,7 +98,7 @@ export async function markItemReviewed(itemId: string, requestId: string) {
 export async function markRequestCompleted(requestId: string) {
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
-  if (!data.user) throw new Error("No autorizado");
+  if (!data.user) throw new Error("Unauthorized");
 
   const { error } = await supabase
     .from("document_requests")

@@ -7,14 +7,14 @@ import type { UploadedDocument } from "@/lib/conta/types";
 export const dynamic = "force-dynamic";
 
 function zipName(name: string) {
-  return name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/-+/g, "-").slice(0, 140) || "archivo";
+  return name.normalize("NFKD").replace(/[^a-zA-Z0-9._-]+/g, "-").replace(/-+/g, "-").slice(0, 140) || "file";
 }
 
 export async function GET(_request: Request, context: { params: Promise<{ id: string }> }) {
   const { id } = await context.params;
   const supabase = await createClient();
   const { data } = await supabase.auth.getUser();
-  if (!data.user) return NextResponse.json({ error: "No autorizado" }, { status: 401 });
+  if (!data.user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   const { data: requestRow } = await supabase
     .from("document_requests")
@@ -22,11 +22,11 @@ export async function GET(_request: Request, context: { params: Promise<{ id: st
     .eq("id", id)
     .eq("user_id", data.user.id)
     .single();
-  if (!requestRow) return NextResponse.json({ error: "Solicitud no encontrada" }, { status: 404 });
+  if (!requestRow) return NextResponse.json({ error: "Request not found" }, { status: 404 });
 
   const { data: documents } = await supabase.from("uploaded_documents").select("*").eq("request_id", id).order("created_at");
   const docs = (documents ?? []) as UploadedDocument[];
-  if (docs.length === 0) return NextResponse.json({ error: "No hay documentos" }, { status: 404 });
+  if (docs.length === 0) return NextResponse.json({ error: "No documents found" }, { status: 404 });
 
   const admin = createAdminClient();
   const zip = new JSZip();

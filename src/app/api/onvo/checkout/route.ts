@@ -1,8 +1,17 @@
 import { NextResponse } from "next/server";
 import { createCheckoutSession } from "@/lib/onvo";
+import { createClient } from "@/lib/supabase/server";
+
+async function authenticatedEmail() {
+  const supabase = await createClient();
+  const { data } = await supabase.auth.getUser();
+  return data.user?.email ?? null;
+}
 
 export async function GET() {
-  const result = await createCheckoutSession();
+  const email = await authenticatedEmail();
+  if (!email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const result = await createCheckoutSession({ customerEmail: email });
 
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: result.status });
@@ -16,9 +25,10 @@ export async function GET() {
   return NextResponse.json(result.data);
 }
 
-export async function POST(request: Request) {
-  const body = await request.json().catch(() => ({}));
-  const result = await createCheckoutSession({ customerEmail: body.email });
+export async function POST() {
+  const email = await authenticatedEmail();
+  if (!email) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  const result = await createCheckoutSession({ customerEmail: email });
 
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: result.status });

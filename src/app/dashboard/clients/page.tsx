@@ -24,27 +24,27 @@ export default async function ClientsPage() {
     <main className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
       <Card>
         <CardHeader>
-          <CardTitle>Nuevo cliente</CardTitle>
-          <CardDescription>Crea un cliente contable para solicitar documentos mensuales.</CardDescription>
+          <CardTitle>New client</CardTitle>
+          <CardDescription>Create a bookkeeping client to request monthly documents.</CardDescription>
         </CardHeader>
         <form action={createAccountingClient} className="grid gap-4">
-          <Field name="name" label="Empresa / cliente" required />
-          <Field name="contact_name" label="Contacto" />
+          <Field name="name" label="Company / client" required />
+          <Field name="contact_name" label="Contact" />
           <Field name="email" label="Email" type="email" />
-          <Field name="phone" label="Teléfono" />
+          <Field name="phone" label="Phone" />
           <div className="grid gap-2">
-            <Label htmlFor="notes">Notas</Label>
+            <Label htmlFor="notes">Notes</Label>
             <textarea id="notes" name="notes" className="min-h-24 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-800 dark:bg-slate-950" />
           </div>
-          <Button type="submit">Crear cliente</Button>
+          <Button type="submit">Create client</Button>
         </form>
       </Card>
 
       <section>
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">Clientes</h1>
-            <p className="text-sm text-slate-600 dark:text-slate-300">{clients?.length ?? 0} registrados</p>
+            <h1 className="text-2xl font-bold">Clients</h1>
+            <p className="text-sm text-slate-600 dark:text-slate-300">{clients?.length ?? 0} registered</p>
           </div>
           <Link href="/dashboard" className="text-sm font-semibold text-emerald-600">Dashboard</Link>
         </div>
@@ -53,11 +53,11 @@ export default async function ClientsPage() {
             <Link key={client.id} href={`/dashboard/clients/${client.id}`}>
               <Card className="transition hover:border-emerald-300">
                 <CardTitle>{client.name}</CardTitle>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{client.email ?? "Sin email"}</p>
+                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{client.email ?? "No email"}</p>
               </Card>
             </Link>
           ))}
-          {!clients?.length && <Card><CardTitle>Aún no hay clientes</CardTitle><p className="mt-2 text-sm text-slate-600">Crea el primero para generar una solicitud mensual.</p></Card>}
+          {!clients?.length && <Card><CardTitle>No clients yet</CardTitle><p className="mt-2 text-sm text-slate-600">Create your first client to generate a monthly request.</p></Card>}
         </div>
       </section>
     </main>
@@ -65,7 +65,7 @@ export default async function ClientsPage() {
 }
 
 function SetupNeeded() {
-  return <main className="mx-auto max-w-3xl px-4 py-16"><Card><CardTitle>Configura Supabase</CardTitle><p className="mt-2 text-sm text-slate-600">Agrega NEXT_PUBLIC_SUPABASE_URL y NEXT_PUBLIC_SUPABASE_ANON_KEY para activar clientes.</p></Card></main>;
+  return <main className="mx-auto max-w-3xl px-4 py-16"><Card><CardTitle>Configure Supabase</CardTitle><p className="mt-2 text-sm text-slate-600">Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to enable clients.</p></Card></main>;
 }
 
 function Field({ name, label, type = "text", required = false }: { name: string; label: string; type?: string; required?: boolean }) {
