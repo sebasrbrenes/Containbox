@@ -81,8 +81,8 @@ export default function DemoPage() {
     <main className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <section className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
-          <p className="text-sm font-semibold text-emerald-600">Demo without Supabase</p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">FileFollowup interactive demo</h1>
+          <p className="vintage-kicker">Demo without Supabase</p>
+          <h1 className="mt-4 text-5xl font-semibold tracking-tight sm:text-6xl">FileFollowup interactive demo</h1>
           <p className="mt-3 max-w-2xl text-slate-600 dark:text-slate-300">
             Explore the complete workflow: create a client, build a monthly checklist, share a public link, update statuses, and use the key actions. This demo does not save real data.
           </p>
@@ -111,9 +111,9 @@ export default function DemoPage() {
             <Field label="Period" value={period} onChange={setPeriod} />
           </div>
 
-          <div className="mt-6 rounded-2xl bg-slate-50 p-4 dark:bg-slate-900">
+          <div className="ledger-lines mt-6 rounded-2xl border border-slate-200 bg-slate-50 p-4">
             <p className="text-sm font-semibold">Public link to send by email or text</p>
-            <p className="mt-2 break-all rounded-xl bg-white p-3 text-sm text-emerald-700 ring-1 ring-slate-200 dark:bg-slate-950 dark:ring-slate-800">{publicLink}</p>
+            <p className="mt-2 break-all rounded-xl bg-white p-3 font-mono text-sm text-emerald-700 ring-1 ring-slate-200">{publicLink}</p>
             <p className="mt-2 text-xs text-slate-500">In production, Supabase generates this link with a secure token.</p>
           </div>
         </Card>

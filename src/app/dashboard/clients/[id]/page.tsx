@@ -34,8 +34,8 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
     <main className="mx-auto w-full max-w-5xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <Link href="/dashboard/clients" className="text-sm font-semibold text-emerald-600">← Clients</Link>
-          <h1 className="mt-2 text-3xl font-bold">{typedClient.name}</h1>
+          <Link href="/dashboard/clients" className="vintage-kicker">Back to clients</Link>
+          <h1 className="mt-4 text-5xl font-semibold">{typedClient.name}</h1>
           <p className="text-slate-600 dark:text-slate-300">{typedClient.contact_name ?? "No contact"} · {typedClient.email ?? "No email"}</p>
         </div>
         <ButtonLink href={`/dashboard/requests/new?client=${typedClient.id}`}>Create request</ButtonLink>
@@ -54,7 +54,7 @@ export default async function ClientDetailPage({ params }: { params: Promise<{ i
       </Card>
 
       <section>
-        <h2 className="mb-3 text-xl font-semibold">Requests</h2>
+        <h2 className="hairline-title mb-4 text-3xl font-semibold">Requests</h2>
         <div className="grid gap-3">
           {(requests as DocumentRequest[] | null)?.map((request) => (
             <Link key={request.id} href={`/dashboard/requests/${request.id}`}>

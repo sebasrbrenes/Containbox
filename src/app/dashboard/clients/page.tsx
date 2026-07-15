@@ -22,9 +22,10 @@ export default async function ClientsPage() {
 
   return (
     <main className="mx-auto grid w-full max-w-7xl gap-6 px-4 py-10 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
-      <Card>
+      <Card className="border-slate-300 lg:sticky lg:top-24 lg:self-start">
         <CardHeader>
-          <CardTitle>New client</CardTitle>
+          <p className="vintage-kicker mb-3">Add to the ledger</p>
+          <CardTitle className="text-3xl">New client</CardTitle>
           <CardDescription>Create a bookkeeping client to request monthly documents.</CardDescription>
         </CardHeader>
         <form action={createAccountingClient} className="grid gap-4">
@@ -34,7 +35,7 @@ export default async function ClientsPage() {
           <Field name="phone" label="Phone" />
           <div className="grid gap-2">
             <Label htmlFor="notes">Notes</Label>
-            <textarea id="notes" name="notes" className="min-h-24 rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm dark:border-slate-800 dark:bg-slate-950" />
+            <textarea id="notes" name="notes" className="min-h-24 rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm" />
           </div>
           <Button type="submit">Create client</Button>
         </form>
@@ -43,15 +44,16 @@ export default async function ClientsPage() {
       <section>
         <div className="mb-4 flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold">Clients</h1>
+            <p className="vintage-kicker mb-2">Your client book</p>
+            <h1 className="text-4xl font-semibold">Clients</h1>
             <p className="text-sm text-slate-600 dark:text-slate-300">{clients?.length ?? 0} registered</p>
           </div>
-          <Link href="/dashboard" className="text-sm font-semibold text-emerald-600">Dashboard</Link>
+          <Link href="/dashboard" className="text-xs font-bold uppercase tracking-[0.09em] text-emerald-700">Dashboard</Link>
         </div>
         <div className="grid gap-3">
           {(clients as AccountingClient[] | null)?.map((client) => (
             <Link key={client.id} href={`/dashboard/clients/${client.id}`}>
-              <Card className="transition hover:border-emerald-300">
+              <Card className="group transition hover:-translate-y-0.5 hover:border-emerald-400">
                 <CardTitle>{client.name}</CardTitle>
                 <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{client.email ?? "No email"}</p>
               </Card>

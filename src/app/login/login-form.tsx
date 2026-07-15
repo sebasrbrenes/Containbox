@@ -51,9 +51,10 @@ export function LoginForm() {
   }
 
   return (
-    <Card className="mx-auto w-full max-w-md">
+    <Card className="mx-auto w-full max-w-md border-slate-300 p-7 shadow-[8px_8px_0_rgba(89,67,49,0.09)] sm:p-9">
       <CardHeader>
-        <CardTitle>{mode === "login" ? "Sign in" : "Create your account"}</CardTitle>
+        <p className="vintage-kicker mb-3">FileFollowup</p>
+        <CardTitle className="text-4xl">{mode === "login" ? "Welcome back" : "Create your account"}</CardTitle>
         <CardDescription>Use your email and password to access your workspace.</CardDescription>
       </CardHeader>
       <form className="space-y-4" onSubmit={handleSubmit}>
@@ -71,7 +72,7 @@ export function LoginForm() {
           {loading ? "Processing..." : mode === "login" ? "Sign in" : "Create account"}
         </Button>
       </form>
-      <button className="mt-4 text-sm font-medium text-slate-600 underline dark:text-slate-300" onClick={() => setMode(mode === "login" ? "signup" : "login")} type="button">
+      <button className="mt-5 text-sm font-semibold text-emerald-700 underline hover:text-emerald-900" onClick={() => setMode(mode === "login" ? "signup" : "login")} type="button">
         {mode === "login" ? "Don't have an account? Sign up" : "Already have an account? Sign in"}
       </button>
     </Card>

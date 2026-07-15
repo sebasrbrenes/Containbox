@@ -46,8 +46,8 @@ export default async function RequestDetailPage({
     <main className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <Link href={typedClient ? `/dashboard/clients/${typedClient.id}` : "/dashboard"} className="text-sm font-semibold text-emerald-600">← Back</Link>
-          <h1 className="mt-2 text-3xl font-bold">{typedRequest.title}</h1>
+          <Link href={typedClient ? `/dashboard/clients/${typedClient.id}` : "/dashboard"} className="vintage-kicker">Back to client</Link>
+          <h1 className="mt-4 text-5xl font-semibold">{typedRequest.title}</h1>
           <p className="text-slate-600 dark:text-slate-300">{typedClient?.name ?? "Client"} · {typedRequest.period} · {requestStatusLabel(typedRequest.status)}</p>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row">
@@ -58,12 +58,12 @@ export default async function RequestDetailPage({
         </div>
       </div>
 
-      <Card className="mb-6">
+      <Card className="ledger-lines mb-6 border-slate-300">
         <CardHeader>
           <CardTitle>Public client link</CardTitle>
           <CardDescription>Share it by email or text. The client does not need an account.</CardDescription>
         </CardHeader>
-        <div className="rounded-xl bg-slate-100 p-3 text-sm break-all dark:bg-slate-900">{uploadUrl}</div>
+        <div className="rounded-xl border border-dashed border-slate-300 bg-slate-100 p-3 font-mono text-sm break-all">{uploadUrl}</div>
         {reminder === "sent" ? (
           <p className="mt-4 rounded-xl border border-emerald-200 bg-emerald-50 p-3 text-sm font-medium text-emerald-800 dark:border-emerald-900 dark:bg-emerald-950 dark:text-emerald-200">
             Reminder sent successfully.
@@ -82,7 +82,7 @@ export default async function RequestDetailPage({
           </CardHeader>
           <div className="grid gap-3">
             {(items as DocumentRequestItem[] | null)?.map((item) => (
-              <div key={item.id} className="flex flex-col gap-3 rounded-xl border border-slate-200 p-4 dark:border-slate-800 sm:flex-row sm:items-center sm:justify-between">
+              <div key={item.id} className="flex flex-col gap-3 rounded-xl border border-slate-300 p-4 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="font-semibold">{item.label}</p>
                   <p className="text-sm text-slate-500">{itemStatusLabel(item.status)}</p>
@@ -102,7 +102,7 @@ export default async function RequestDetailPage({
           </CardHeader>
           <div className="grid gap-3">
             {(uploads as UploadedDocument[] | null)?.map((doc) => (
-              <div key={doc.id} className="rounded-xl border border-slate-200 p-3 text-sm dark:border-slate-800">
+              <div key={doc.id} className="rounded-xl border border-slate-300 p-3 text-sm">
                 <p className="font-semibold">{doc.original_name}</p>
                 <p className="text-slate-500">{doc.mime_type ?? "file"} · {doc.size_bytes ?? 0} bytes</p>
                 <a className="mt-2 inline-block font-semibold text-emerald-600" href={`/api/documents/${doc.id}/download`}>Download</a>
