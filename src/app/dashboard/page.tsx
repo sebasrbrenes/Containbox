@@ -40,28 +40,32 @@ export default async function DashboardPage() {
           </form>
         </div>
       </div>
-      <section className="grid gap-4 md:grid-cols-3">
+      <section className="grid border-y border-slate-400 md:grid-cols-3">
         {metrics.map((metric) => (
-          <Card key={metric.label} className="border-slate-300">
-            <CardHeader>
-              <CardDescription>{metric.label}</CardDescription>
-              <CardTitle className="text-5xl text-emerald-800">{metric.value}</CardTitle>
-            </CardHeader>
-            <p className="text-sm text-slate-500">{metric.hint}</p>
-          </Card>
+          <div key={metric.label} className="border-b border-slate-400 py-6 last:border-b-0 md:border-b-0 md:border-r md:px-7 md:first:pl-0 md:last:border-r-0">
+            <p className="sheet-label text-slate-600">{metric.label}</p>
+            <p className="mt-2 font-display text-5xl font-semibold text-emerald-800">{metric.value}</p>
+            <p className="mt-2 text-sm text-slate-500">{metric.hint}</p>
+          </div>
         ))}
       </section>
-      <section className="mt-8 grid gap-4 md:grid-cols-2">
-        <Card className="ledger-lines">
-          <CardTitle>Clients</CardTitle>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Create clients and save their contact details.</p>
-          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/clients">Open clients →</Link>
-        </Card>
-        <Card className="ledger-lines">
-          <CardTitle>Monthly requests</CardTitle>
-          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">Create checklists and share upload links.</p>
-          <Link className="mt-4 inline-block text-sm font-semibold text-emerald-600" href="/dashboard/requests/new">Create request →</Link>
-        </Card>
+      <section className="mt-12">
+        <div className="mb-4 flex items-end justify-between">
+          <div><p className="sheet-label text-emerald-800">Working desk</p><h2 className="mt-2 text-3xl font-semibold">Where do you need to go?</h2></div>
+          <p className="hidden text-xs text-slate-500 sm:block">FILEFOLLOWUP / WORKSPACE</p>
+        </div>
+        <div className="border-t border-slate-500">
+          <Link className="group grid gap-2 border-b border-slate-400 py-6 sm:grid-cols-[0.8fr_1.2fr_auto] sm:items-center" href="/dashboard/clients">
+            <h3 className="text-2xl font-semibold">Client book</h3>
+            <p className="text-sm text-slate-600">Create clients and keep their contact details together.</p>
+            <span className="text-sm font-semibold text-emerald-800 group-hover:translate-x-1">Open →</span>
+          </Link>
+          <Link className="group grid gap-2 border-b border-slate-400 py-6 sm:grid-cols-[0.8fr_1.2fr_auto] sm:items-center" href="/dashboard/requests/new">
+            <h3 className="text-2xl font-semibold">Monthly requests</h3>
+            <p className="text-sm text-slate-600">Write a checklist and produce a no-login upload link.</p>
+            <span className="text-sm font-semibold text-emerald-800 group-hover:translate-x-1">Create →</span>
+          </Link>
+        </div>
       </section>
     </main>
   );

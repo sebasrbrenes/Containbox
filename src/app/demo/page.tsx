@@ -55,12 +55,11 @@ export default function DemoPage() {
   }
 
   function cycleItem(id: string) {
-    setItems((current) => current.map((item) => {
-      if (item.id !== id) return item;
-      const status = nextStatus(item.status);
-      setActivity((entries) => [`${item.label}: ${status}`, ...entries].slice(0, 5));
-      return { ...item, status };
-    }));
+    const item = items.find((candidate) => candidate.id === id);
+    if (!item) return;
+    const status = nextStatus(item.status);
+    setItems((current) => current.map((candidate) => candidate.id === id ? { ...candidate, status } : candidate));
+    setActivity((entries) => [`${item.label}: ${status}`, ...entries].slice(0, 5));
   }
 
   function resetDemo() {
@@ -187,11 +186,11 @@ function Field({ label, value, onChange, type = "text" }: { label: string; value
 
 function Metric({ icon: Icon, label, value }: { icon: React.ComponentType<{ className?: string }>; label: string; value: number }) {
   return (
-    <Card>
+    <div className="border-t border-slate-400 py-5">
       <Icon className="mb-3 h-5 w-5 text-emerald-600" />
-      <p className="text-sm text-slate-500">{label}</p>
-      <p className="mt-1 text-3xl font-bold">{value}</p>
-    </Card>
+      <p className="sheet-label text-slate-500">{label}</p>
+      <p className="mt-2 font-display text-4xl font-semibold">{value}</p>
+    </div>
   );
 }
 

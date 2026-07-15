@@ -68,24 +68,9 @@ html {
 body {
   min-height: 100vh;
   background-color: var(--background);
-  background-image:
-    radial-gradient(circle at 12% 8%, rgba(163, 79, 53, 0.05), transparent 23rem),
-    linear-gradient(rgba(69, 54, 42, 0.018) 1px, transparent 1px);
-  background-size: auto, 100% 4px;
+  background-image: radial-gradient(circle at 12% 8%, rgba(163, 79, 53, 0.04), transparent 23rem);
   color: var(--foreground);
   font-family: var(--font-body), "Avenir Next", "Segoe UI", sans-serif;
-}
-
-body::before {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  content: "";
-  pointer-events: none;
-  opacity: 0.42;
-  background: radial-gradient(circle at 70% 25%, rgba(114, 98, 77, 0.08) 0 1px, transparent 1.5px);
-  background-size: 23px 23px;
-  mask-image: linear-gradient(to bottom, black, transparent 75%);
 }
 
 h1,
@@ -191,6 +176,53 @@ textarea:focus {
   content: "";
   background: var(--line);
 }
+
+.sheet-label {
+  font-family: var(--font-body), sans-serif;
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.product-sheet {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #968875;
+  background: #fbf8f0;
+  box-shadow: 10px 10px 0 #d4c7b3;
+}
+
+.product-sheet::before {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 3.65rem;
+  width: 1px;
+  content: "";
+  background: rgba(163, 79, 53, 0.18);
+  pointer-events: none;
+}
+
+.request-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+}
+
+.request-status i {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+.request-status.reviewed { color: #405e56; }
+.request-status.received { color: #55766c; }
+.request-status.waiting { color: #9a6d20; }
 
 @media (prefers-reduced-motion: reduce) {
   *,

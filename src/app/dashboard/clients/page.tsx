@@ -50,13 +50,12 @@ export default async function ClientsPage() {
           </div>
           <Link href="/dashboard" className="text-xs font-bold uppercase tracking-[0.09em] text-emerald-700">Dashboard</Link>
         </div>
-        <div className="grid gap-3">
+        <div className="border-t border-slate-400">
           {(clients as AccountingClient[] | null)?.map((client) => (
-            <Link key={client.id} href={`/dashboard/clients/${client.id}`}>
-              <Card className="group transition hover:-translate-y-0.5 hover:border-emerald-400">
-                <CardTitle>{client.name}</CardTitle>
-                <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">{client.email ?? "No email"}</p>
-              </Card>
+            <Link key={client.id} href={`/dashboard/clients/${client.id}`} className="group grid gap-1 border-b border-slate-400 py-5 sm:grid-cols-[1fr_1fr_auto] sm:items-center">
+              <h2 className="text-xl font-semibold">{client.name}</h2>
+              <p className="text-sm text-slate-600">{client.email ?? "No email"}</p>
+              <span className="text-sm font-semibold text-emerald-800 group-hover:translate-x-1">Open →</span>
             </Link>
           ))}
           {!clients?.length && <Card><CardTitle>No clients yet</CardTitle><p className="mt-2 text-sm text-slate-600">Create your first client to generate a monthly request.</p></Card>}
