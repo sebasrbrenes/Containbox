@@ -15,12 +15,6 @@ const workflow = [
   ["04", "Take the clean handoff", "Review the files, close the checklist, and download the period as one organized ZIP."],
 ];
 
-const plans = [
-  { name: "Starter", price: "$19", clients: "20 clients", fit: "For a solo bookkeeper" },
-  { name: "Studio", price: "$49", clients: "100 clients", fit: "For a growing practice" },
-  { name: "Firm", price: "$99", clients: "300 clients", fit: "For a small team" },
-];
-
 export default function Home() {
   return (
     <main>
@@ -162,22 +156,36 @@ export default function Home() {
       <section id="pricing" className="mx-auto max-w-[1180px] px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         <div className="grid gap-10 lg:grid-cols-[0.34fr_0.66fr]">
           <div>
-            <p className="sheet-label text-emerald-800">Pricing draft</p>
-            <h2 className="mt-5 text-4xl font-semibold sm:text-5xl">Pay for the size of your client book.</h2>
-            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-600">Every plan includes unlimited requests, upload links, reminders, and ZIP downloads. We are validating these prices with our first firms.</p>
+            <p className="sheet-label text-emerald-800">One clear plan</p>
+            <h2 className="mt-5 text-4xl font-semibold sm:text-5xl">Worth less than one hour of recovered time.</h2>
+            <p className="mt-5 max-w-sm text-sm leading-6 text-slate-600">FileFollowup is priced for firms that value an orderly close and a professional client experience—not for bargain hunting.</p>
           </div>
-          <div className="border-t border-slate-500">
-            {plans.map((plan) => (
-              <div key={plan.name} className="grid grid-cols-[1fr_auto] gap-4 border-b border-slate-500 py-6 sm:grid-cols-[0.7fr_0.8fr_0.8fr_auto] sm:items-center">
-                <h3 className="text-2xl font-semibold">{plan.name}</h3>
-                <p className="hidden text-sm text-slate-600 sm:block">{plan.fit}</p>
-                <p className="text-sm font-semibold text-slate-700">{plan.clients}</p>
-                <p className="text-right"><span className="font-display text-3xl font-semibold">{plan.price}</span><span className="text-xs text-slate-500"> / month</span></p>
+          <div className="border-y border-slate-500">
+            <div className="grid gap-8 py-8 sm:grid-cols-[1fr_auto] sm:items-start">
+              <div>
+                <p className="sheet-label text-emerald-800">FileFollowup membership</p>
+                <h3 className="mt-3 text-3xl font-semibold">The complete monthly desk</h3>
+                <ul className="mt-6 grid gap-3 text-sm text-slate-700 sm:grid-cols-2">
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />Up to 100 active clients</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />Unlimited document requests</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />No-login client upload links</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />Status tracking and reminders</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />Organized ZIP downloads</li>
+                  <li className="flex gap-2"><Check className="h-4 w-4 shrink-0 text-emerald-800" />Personal onboarding support</li>
+                </ul>
               </div>
-            ))}
-            <div className="flex flex-col gap-5 py-7 sm:flex-row sm:items-center sm:justify-between">
-              <p className="max-w-md text-sm leading-6 text-slate-600">Founding pilot: guided setup, real-client testing, and direct feedback with the builder.</p>
-              <ButtonLink href="/dashboard">Start with a real client</ButtonLink>
+              <div className="min-w-56 border-l border-slate-300 pl-6">
+                <p className="sheet-label text-slate-500">Monthly</p>
+                <p className="mt-2"><span className="font-display text-5xl font-semibold">$99</span><span className="text-xs text-slate-500"> / month</span></p>
+                <div className="my-5 border-t border-slate-300" />
+                <p className="sheet-label text-emerald-800">Annual · best value</p>
+                <p className="mt-2"><span className="font-display text-5xl font-semibold">$948</span><span className="text-xs text-slate-500"> / year</span></p>
+                <p className="mt-1 text-xs font-semibold text-emerald-800">$79/month · save $240</p>
+              </div>
+            </div>
+            <div className="flex flex-col gap-5 border-t border-slate-400 py-6 sm:flex-row sm:items-center sm:justify-between">
+              <p className="max-w-md text-sm leading-6 text-slate-600">Start with the interactive demo, then we will personally help configure your first client workflow.</p>
+              <ButtonLink href="/demo">Try FileFollowup</ButtonLink>
             </div>
           </div>
         </div>
